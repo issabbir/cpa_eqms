@@ -1,0 +1,61 @@
+ equipment_description catagory_no: "1001"
+                              equipment_description: "Processor: Intel Core i5-9500 (9MB, 3.0GHz up to 4.4GHz) Processor
+                              ↵RAM: 4GB (1x4G) 2666MHz DDR4L Memory, 2 DIMM slots
+                              ↵Graphics Card: Intel Integrated Graphics
+                              ↵Storage: 1TB 7200 RPM 3.5" SATA Hard Drive
+                              ↵Audio: Combo
+                              ↵Power Supply: 260W up to 85% efficient Power Supply
+                              ↵Keyboard:Dell USB Keyboard
+                              ↵Mouse: Dell Optical Mouse
+                              ↵Optical Drive: DVD+/-RW Drive (Half Height)
+                              ↵"
+                              equipment_id: "EID5001"
+                              equipment_in_use_yn: "Y"
+                              equipment_name: "DELL Desktop-102"
+                              equipment_name_bn: null
+                              equipment_no: "5001"
+                              insert_by: null
+                              insert_date: null
+                              invoice: null
+                              last_maintenance_date: null
+                              manufacturer: "DELL"
+                              model_no: "Dell Optiplex 3070 MT"
+                              no_of_maintenance: "0"
+                              price: "43500"
+                              purchase_date: "2020-01-01 00:00:00"
+                              scrap_yn: "N"
+                              serial_no: "XMWT-3550-TYMC452"
+                              sub_catagory_no: "101"
+                              total_maintenance_cost: "0"
+                              update_by: null
+                              update_date: null
+                              vendor_no: "101"
+                              warranty_expiry_date: "2022-01-01 00:00:00"
+
+
+                               $params = [
+                                                 "P_ACTION_TYPE" => $action_type,
+                                                 "P_ID"  => [ "value" => &$id, "type" => \PDO::PARAM_INPUT_OUTPUT, "length" => 255 ],
+                                                 "P_VESSEL_ID" => $request->get("vessel_id"),
+                                                 "P_JETTY_ID" => $request->get("jetty_id"),
+                                                 "P_CURGO_ID" => $request->get("cargo_id"),
+                                                 "P_ARIVAL_AT" =>  date("Y-m-d", strtotime($request->get("arrival_at"))),
+                                                 "P_BERTHING_AT" => ($request->get("berthing_at") != "") ? date("Y-m-d", strtotime($request->get("berthing_at"))) : "",
+                                                 "P_SHIFTING_AT" =>  ($request->get("shifting_at") != "") ? date("Y-m-d", strtotime($request->get("shifting_at"))) : "",
+                                                 "P_LEAVING_AT" => date("Y-m-d", strtotime($request->get("leaving_at"))),
+                                                 "P_IMPORT_DISCH" => $request->get("import_disch"),
+                                                 "P_B_ON_BOARD" => $request->get("b_on_board"),
+                                                 "P_EXP_LEFTED" => $request->get("exp_lefted"),
+                                                 "P_T_ON_BOARD" => $request->get("t_on_board"),
+                                                 "P_LOCAL_AGENT" => $request->get("local_agent"),
+                                                 "P_STATUS"   => ($action_type == 'I')?'P':"P",
+                                                 "P_PILOTAGE_TYPE_ID" => $request->get("pilotage_type_id"),
+                                                 "P_PILOTAGE_TIME" =>  date("Y-m-d h:i",strtotime(date("Y-m-d").' '.$request->get("pilotage_time"))),
+                                                 "P_PILOT_ID" => ($request->get("pilot_id") == '') ? '' : $request->get("pilot_id"),
+                                                 "P_PILOTAGE_SCHEDULE_START" => ($request->get("pilotage_schedule_start") == '') ? '' : $request->get("pilotage_schedule_start"),
+                                                 "P_PILOTAGE_SCHEDULE_END" => ($request->get("pilotage_schedule_end") == '') ? '' : $request->get("pilotage_schedule_end"),
+                                                 "P_NOTIFICATION_TYPE" => ($request->get("notification_type") == '') ? '' : $request->get("notification_type"),
+                                                 "P_USER_ID" => auth()->id(),
+                                                 "O_STATUS_CODE" => &$status_code,
+                                                 "O_STATUS_MESSAGE" => &$status_message
+                                             ];
